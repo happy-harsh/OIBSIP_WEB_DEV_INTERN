@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <script>
+      function performOperation(temp, from, to) {
+        var result;
+        if (from === "Celsius" && to === "Fahrenheit") {
+          result = (parseFloat(temp) * 9) / 5 + 32; // Celsius to Fahrenheit formula
+          return result + "°F";
+        } else if (from === "Celsius" && to === "Kelvin") {
+          result = parseFloat(temp) + 273.15; // Celsius to Kelvin formula
+          return result + "K";
+        } else if (from === "Fahrenheit" && to === "Celsius") {
+          result = ((parseFloat(temp) - 32) * 5) / 9; // Fahrenheit to Celsius formula
+          return result + "°C";
+        } else if (from === "Fahrenheit" && to === "Kelvin") {
+          result = ((parseFloat(temp) + 459.67) * 5) / 9; // Fahrenheit to Kelvin formula
+          return result + "K";
+        } else if (from === "Kelvin" && to === "Celsius") {
+          result = parseFloat(temp) - 273.15; // Kelvin to Celsius formula
+          return result + "°C";
+        } else if (from === "Kelvin" && to === "Fahrenheit") {
+          result = (parseFloat(temp) * 9) / 5 - 459.67; // Kelvin to Fahrenheit formula
+          return result + "°F";
+        } else {
+          // Same temp type handling
+          if (from === "Fahrenheit") {
+            return temp + "F";
+          } else if (from === "Kelvin") {
+            return temp + "K";
+          } else {
+            return temp + "\u00B0C";
+          }
+        }
+      }
+
+      function myFunction() {
+        var temp = document.getElementById("input").value;
+        var from = document.getElementById("from-temp-type").value;
+        var to = document.getElementById("to-temp-type").value;
+
+        if (isNaN(temp) || temp === "") {
+          alert("Enter a valid temperature number");
+        } else {
+          var res = performOperation(temp, from, to);
+          document.getElementById("demo").innerHTML = res;
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+    <h2>TEMPERATURE CONVERTER</h2>
+    <div class="container">
+      <div class="temp-box">
+        <label for="">Temperature</label>
+        <input type="text" id="input" />
+      </div>
+      <div class="from-to-box">
+        <div class="box-one">
+          <label for="">from</label>
+          <select name="temp-type" id="from-temp-type">
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+            <option value="Celsius">Celsius</option>
+          </select>
+        </div>
+        <div class="box-one">
+          <label for="">to</label>
+          <select name="temp-type" id="to-temp-type">
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+            <option value="Celsius">Celsius</option>
+          </select>
+        </div>
+      </div>
+      <div class="button-box">
+        <button onclick="myFunction()">CONVERT</button>
+      </div>
+      <div class="result-box">
+        <label for="">Result</label>
+        <p id="demo"></p>
+      </div>
+    </div>
+  </body>
+</html>
